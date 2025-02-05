@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Gestor de Libros 📚</h2>
+  
+    <!-- Formulario -->
+    <form (ngSubmit)="agregarLibro()">
+      <input type="text" [(ngModel)]="nuevoLibro.titulo" name="titulo" placeholder="Título del libro" required>
+      <input type="text" [(ngModel)]="nuevoLibro.autor" name="autor" placeholder="Autor" required>
+      <button type="submit" class="btn btn-primary">{{ editando ? 'Actualizar' : 'Agregar' }}</button>
+    </form>
+  
+    <!-- Tabla de libros -->
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Acciones</th>
+      </tr>
+      <tr *ngFor="let libro of libros">
+        <td>{{ libro.id }}</td>
+        <td>{{ libro.titulo }}</td>
+        <td>{{ libro.autor }}</td>
+        <td>
+          <button class="btn btn-warning" (click)="editarLibro(libro)">Editar</button>
+          <button class="btn btn-danger" (click)="eliminarLibro(libro.id)">Eliminar</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  

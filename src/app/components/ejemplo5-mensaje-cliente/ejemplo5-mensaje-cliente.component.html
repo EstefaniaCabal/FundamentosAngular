@@ -1,0 +1,78 @@
+<div style="margin: 20px;">
+    <h1>Mensaje del cliente (formularios reactivos)</h1>
+  
+    <div class="col-sm-4">
+    <form [formGroup]="formContacto" (ngSubmit)="onSubmit()">
+      <p>
+        Nombre: <input type="text" class="form-Control" formControlName="nombre">
+        @if(enviado && formContacto.get('nombre')?.errors?.['required']){
+          <span style="color: red;"> Este campo es obligatorio</span>
+        }
+        @if(enviado && formContacto.get('nombre')?.errors?.['minlength']){
+          <span style="color: red;"> El nombre debe tener al menos 10 caracteres</span>
+        }
+      </p>
+      <p>
+        Email: <input type="text" class="form-Control" formControlName="email">
+        @if(enviado && formContacto.get('email')?.errors?.['email']){
+          <span style="color: red;"> El correo no es valido</span>
+        }
+      </p>
+      <p>
+        ¿Es cliente registrado? :
+        <input type="radio" class="form-Control" formControlName="status" value="Si"/> Si
+        <input type="radio" class="form-Control" formControlName="status" value="No"/> No
+        @if(enviado && formContacto.get('status')?.errors?.['required']){
+          <span style="color: red;">Este campo es obligatorio</span>
+        }
+      </p>
+      <p>
+        Municipio:
+        <select class="form-Control" formControlName = "municipio">
+          <option value="Amealco">Amealco</option>
+          <option value="San Juan del Rio">San Juan del Rio</option>
+          <option value="Tequisquiapan">Tequisquiapan</option>
+        </select>
+        @if(enviado && formContacto.get('municipio')?.errors?.['required']){
+          <span style="color: red;">Este campo es obligatorio</span>
+        }
+      </p>
+      <p>
+        ¿Cuál es us opinión, queja o sugerencia? <br/>
+        <textarea rows="10" cols="70" class="form-Control" formControlName="mensaje"></textarea>
+        @if(enviado && formContacto.get('mensaje')?.errors?.['required']){
+          <span style="color: red;">Este campo es obligatorio</span>
+        }
+        @if(enviado && formContacto.get('mensaje')?.errors?.['maxlength']){
+          <span style="color: red;">EL maximo son 500 caracteres</span>
+        }
+      </p>
+      <p>
+        <input type="checkbox" class="form-Control" formControlName="autorizacion" /> 
+        ¿Autoriza el uso de sus datos personales?
+      </p>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+  
+    <p></p>
+  
+    <div>
+      @if (nombreCliente!='' && emailCliente!=''
+      && statusCliente!='' && municipioCliente!='') {
+        Datos enviados: <br/>
+        Nombre: {{nombreCliente}} <br/>
+        Email: {{emailCliente}} <br/>
+        Cliente registrado: {{statusCliente}} <br/>
+        Municipio: {{municipioCliente}} <br/>
+        @if (autorizacionCliente) {
+          El cliente autoriza el uso de sus datos personales <br/>
+         } @else {
+          El cliente <strong>NO AUTORIZA</strong> compartir sus datos personales <br />
+        }
+        Mensaje: {{mensajeCliente}}
+      }
+    </div>
+  </div>
+  
+  <router-outlet></router-outlet>

@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Fundamentos de Angular</h1>
+  
+    <div>
+      <h4>Interpolación</h4>
+      <p>Nombre del alumno: {{ nombre }}</p>
+      <p>Años de servicio: {{ aniosServicio }}</p>
+      <p>Correo: {{ email }}</p>
+      <p>Uno + Uno: {{ 1+1 }}</p>
+      <p>{{ estaActivo() }}</p>
+      <p>Total de alumnos: {{ sumarAlumnos() }}</p>
+    </div>
+  
+    <div>
+      <h4>Captura de eventos</h4>
+      <h5>Contador: {{ contador }}</h5>
+      <button type="button" class="btn btn-primary" (click)="incrementarContador()">Sumar 1</button>
+      <button type="button" class="btn btn-warning" (click)="decrementarContador()">Restar 1</button>
+    </div>
+  
+    <div>
+      <h4>Property Binding</h4>
+      <button type="button" class="btn btn-primary" [disabled]="desactivarBoton">
+        Guardar
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cambiarValor()">
+        Habilitar Botón
+      </button>
+    </div>
+  </div>
+  
